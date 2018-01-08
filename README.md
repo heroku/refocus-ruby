@@ -29,7 +29,7 @@ refocs = Refocus.client
 
 # Doing it yourself:
 refocus = Refocus.client(url: "https://my.refocus.instance.com", token: "some-token-i-generated"
-``
+```
 ### Subjects
 
 You can manage subjects like this:
