@@ -3,7 +3,7 @@ require "json"
 require "refocus/aspects"
 require "refocus/subjects"
 require "refocus/samples"
-require "refocus/lenses"
+require "refocus/perspectives"
 
 module Refocus
   class Client
@@ -30,8 +30,8 @@ module Refocus
       Refocus::Samples.new(url: "#{url}/v1/samples", token: token)
     end
 
-    def lenses
-      Refocus::Lenses.new(url: "#{url}/v1/lenses", token: token)
+    def perspectives
+      Refocus::Perspectives.new(url: "#{url}/v1/perspectives", token: token)
     end
 
   end

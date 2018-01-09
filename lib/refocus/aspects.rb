@@ -1,6 +1,10 @@
 require "refocus/http"
+require "refocus/json_helper"
+
 module Refocus
   class Aspects
+    include JsonHelper
+
     attr_reader :http
 
     def initialize(url:, token:)
@@ -23,10 +27,6 @@ module Refocus
 
     def get(name:)
       json(http.get(name))
-    end
-
-    def json(response)
-      JSON.parse(response.body)
     end
 
     def default_options
