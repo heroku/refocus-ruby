@@ -1,9 +1,11 @@
 require "refocus/http"
 require "refocus/json_helper"
+require "refocus/path_helper"
 
 module Refocus
   class Aspects
     include JsonHelper
+    include PathHelper
 
     attr_reader :http
 
@@ -15,9 +17,10 @@ module Refocus
       json(http.get(""))
     end
 
-    def create(parent: nil, name:, options: {} )
+    def create(name:, options: {} )
+      parent, child = parent_and_name(name)
       path = parent ? "#{parent}/child" : ""
-      body =  default_options.merge("name" => name).merge(options)
+      body =  default_options.merge("name" => child).merge(options)
       json(http.post(path, body: body))
     end
 

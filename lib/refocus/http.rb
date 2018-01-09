@@ -17,6 +17,14 @@ module Refocus
       connection(path).get(headers: headers, expects: 200)
     end
 
+    def patch(path, body:)
+      connection(path).put(body: convert(body), headers: headers, expects: 201)
+    end
+
+    def put(path, body:)
+      connection(path).put(body: convert(body), headers: headers, expects: 201)
+    end
+
     def delete(path)
       connection(path).delete(headers: headers, expects: 200)
     end
