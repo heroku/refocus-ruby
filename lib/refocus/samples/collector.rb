@@ -14,7 +14,7 @@ module Refocus
       end
 
       def submit
-        result = json(http.post("upsert/bulk", body: samples))
+        result = json(http.post("upsert/bulk", body: samples, expects: 200))
         samples.clear
         true
       end

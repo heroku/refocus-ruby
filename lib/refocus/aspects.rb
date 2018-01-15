@@ -24,6 +24,11 @@ module Refocus
       json(http.post(path, body: body))
     end
 
+    def update(name:, options: {} )
+      current = get(name: name).except("id")
+      json(http.patch(name, body: get(name: name).merge(options)))
+    end
+
     def delete(name:)
       json(http.delete(name))
     end

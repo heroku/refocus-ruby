@@ -9,8 +9,8 @@ module Refocus
       @content_type = content_type
     end
 
-    def post(path, body:)
-      connection(path).post(body: convert(body), headers: headers, expects: 201)
+    def post(path, body:, expects: 201)
+      connection(path).post(body: convert(body), headers: headers, expects: expects)
     end
 
     def get(path)
