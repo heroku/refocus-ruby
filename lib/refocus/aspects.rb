@@ -25,8 +25,7 @@ module Refocus
     end
 
     def update(name:, options: {} )
-      current = get(name: name).except("id")
-      json(http.patch(name, body: get(name: name).merge(options)))
+      http.patch(name, body: options)
     end
 
     def delete(name:)

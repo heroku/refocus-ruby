@@ -18,7 +18,7 @@ module Refocus
     end
 
     def patch(path, body:)
-      connection(path).put(body: convert(body), headers: headers, expects: 201)
+      connection(path).patch(body: convert(body), headers: headers, expects: 200)
     end
 
     def put(path, body:)
