@@ -28,6 +28,10 @@ module Refocus
       json(http.delete(name))
     end
 
+    def update(name:, options:)
+      json(http.patch(name, body: options))
+    end
+
     def get(name:)
       json(http.get(name))
     end
