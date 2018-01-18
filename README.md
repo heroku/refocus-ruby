@@ -53,7 +53,7 @@ refocus = Refocus.client
 # Doing it yourself:
 refocus = Refocus.client(url: "https://my.refocus.instance.com", token: "some-token-i-generated")
 ```
-### Subjects
+#### Subjects
 
 You can manage subjects like this:
 
@@ -71,7 +71,7 @@ refocus.subjects.all
 refocus.subjects.delete(name: "my-subject.child-subject")
 ```
 
-### Aspects
+#### Aspects
 
 You can manage aspects like this:
 
@@ -86,7 +86,7 @@ refocus.aspects.get(name: "my-aspect")
 refocus.aspects.delete(name: "my-aspect")
 ```
 
-### Lenses
+#### Lenses
 
 Lenses are not supported at this time.
 
