@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    refocus (0.1.1)
+    refocus (0.1.2)
       clamp
       excon
 

@@ -1,6 +1,8 @@
 # Refocus
 
-A ruby client library for [Refocus](https://github.com/salesforce/refocus).
+A ruby client library and CLI for [Refocus](https://github.com/salesforce/refocus).
+
+
 
 ## Installation
 
@@ -20,15 +22,37 @@ Or install it yourself as:
 
 ## Usage
 
+### CLI
+
+Run
+```
+Usage:
+    refocus [OPTIONS] SUBCOMMAND [ARG] ...
+
+Parameters:
+    SUBCOMMAND                    subcommand
+    [ARG] ...                     subcommand arguments
+
+Subcommands:
+    samples:get                   Print a sample
+
+Options:
+    -h, --help                    print help
+```
+
+### Library
+
 Refocus will pick up `REFOCUS_HOST` and `REFOCUS_API_TOKEN` environment vars if these are set.
-You can create a client like this:
+You can create a client like this in a pry session:
 
 ```ruby
+require "refocus"
+
 # Using env vars. This will fail if REFOCUS_HOST and REFOCUS_API_TOKEN are unset:
-refocs = Refocus.client
+refocus = Refocus.client
 
 # Doing it yourself:
-refocus = Refocus.client(url: "https://my.refocus.instance.com", token: "some-token-i-generated"
+refocus = Refocus.client(url: "https://my.refocus.instance.com", token: "some-token-i-generated")
 ```
 ### Subjects
 
@@ -65,8 +89,7 @@ refocus.aspects.delete(name: "my-aspect")
 
 ### Lenses
 
-IN PROGRESS
-
+Lenses are not supported at this time. Feel free to submit a pull request!
 
 ## Development
 
