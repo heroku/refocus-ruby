@@ -2,6 +2,7 @@
 
 A ruby client library and CLI for [Refocus](https://github.com/salesforce/refocus).
 
+This client is not complete. If you notice any missing functionality, please feel free to submit a pull request!
 
 
 ## Installation
@@ -89,7 +90,7 @@ refocus.aspects.delete(name: "my-aspect")
 
 ### Lenses
 
-Lenses are not supported at this time. Feel free to submit a pull request!
+Lenses are not supported at this time.
 
 ## Development
 
