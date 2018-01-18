@@ -24,8 +24,6 @@ Or install it yourself as:
 ## Usage
 
 ### CLI
-
-Run
 ```
 Usage:
     refocus [OPTIONS] SUBCOMMAND [ARG] ...
