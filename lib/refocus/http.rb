@@ -1,3 +1,5 @@
+require "refocus/errors"
+
 module Refocus
   class Http
 
@@ -10,23 +12,30 @@ module Refocus
     end
 
     def post(path, body:, expects: 201)
-      connection(path).post(body: convert(body), headers: headers, expects: expects)
+      handle { connection(path).post(body: convert(body), headers: headers, expects: expects) }
     end
 
     def get(path)
-      connection(path).get(headers: headers, expects: 200)
+      handle { connection(path).get(headers: headers, expects: 200) }
     end
 
     def patch(path, body:)
-      connection(path).patch(body: convert(body), headers: headers, expects: 200)
+      handle { connection(path).patch(body: convert(body), headers: headers, expects: 200) }
     end
 
     def put(path, body:)
-      connection(path).put(body: convert(body), headers: headers, expects: 201)
+      handle { connection(path).put(body: convert(body), headers: headers, expects: 201) }
     end
 
     def delete(path)
-      connection(path).delete(headers: headers, expects: 200)
+      handle { connection(path).delete(headers: headers, expects: 200) }
+    end
+
+    def handle(&block)
+      yield
+    rescue Excon::Error::BadRequest => e
+      response = JSON.parse(e.response.body)["errors"].first["message"]
+      raise ApiError, JSON.parse(e.response.body)
     end
 
     def headers

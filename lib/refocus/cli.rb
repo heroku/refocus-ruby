@@ -6,4 +6,5 @@ module Refocus
 end
 
 require "refocus/cli/samples"
+require "refocus/cli/resources"
 

@@ -41,13 +41,13 @@ Options:
 
 ### Library
 
-Refocus will pick up `REFOCUS_HOST` and `REFOCUS_API_TOKEN` environment vars if these are set.
+Refocus will pick up `REFOCUS_URL` and `REFOCUS_API_TOKEN` environment vars if these are set.
 You can create a client like this in a `pry` or `irb` session, or in your ruby program:
 
 ```ruby
 require "refocus"
 
-# Using env vars. This will fail if REFOCUS_HOST and REFOCUS_API_TOKEN are unset:
+# Using env vars. This will fail if REFOCUS_URLand REFOCUS_API_TOKEN are unset:
 refocus = Refocus.client
 
 # Doing it yourself:
