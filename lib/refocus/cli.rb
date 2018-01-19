@@ -7,4 +7,6 @@ end
 
 require "refocus/cli/samples"
 require "refocus/cli/resources"
+require "refocus/cli/aspects"
+require "refocus/cli/subjects"
 
