@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    refocus (0.1.4)
-      clamp
-      excon
+    refocus (0.1.5)
+      clamp (~> 1.1)
+      excon (~> 0.60)
 
 GEM
   remote: https://rubygems.org/
@@ -36,7 +36,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
-  pry
+  pry (~> 0.11)
   rake (~> 10.0)
   refocus!
   rspec (~> 3.0)
