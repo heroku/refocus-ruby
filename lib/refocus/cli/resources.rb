@@ -1,9 +1,10 @@
 require "refocus/cli"
+require "refocus/cli/base"
 require "json"
 require "yaml"
 
 module Refocus
-  class ResourcesSyncCommand < Clamp::Command
+  class ResourcesSyncCommand < BaseCommand
 
     option(["-a", "--action"], "ACTION", "action to perform: create or update", default: "create") do |s|
       (raise ArgumentError, "Invalid action: #{s}") unless %w{create update}.include?(s)
@@ -11,15 +12,15 @@ module Refocus
     end
 
     def execute
-      subjects.each do |subject|
-        refocus.subjects.send(action, {
+      input_subjects.each do |subject|
+        subjects.send(action, {
           name: subject.fetch("name"),
           options: subject.fetch("properties")
         })
       end
 
-      aspects.each do |aspect|
-        refocus.aspects.send(action, {
+      input_aspects.each do |aspect|
+        aspects.send(action, {
           name: aspect.fetch("name"),
           options: aspect.fetch("properties")
         })
@@ -30,16 +31,12 @@ module Refocus
       @input ||= YAML.safe_load(STDIN.read)
     end
 
-    def subjects
+    def input_subjects
       input["subjects"] || []
     end
 
-    def aspects
+    def input_aspects
       input["aspects"] || []
-    end
-
-    def refocus
-      Refocus.client
     end
   end
 
