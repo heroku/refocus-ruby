@@ -2,9 +2,6 @@
 
 A ruby client library and CLI for [Refocus](https://github.com/salesforce/refocus).
 
-This client is not complete. If you notice any missing functionality, please feel free to submit a pull request!
-
-
 ## Installation
 
 Add this line to your application's Gemfile:
