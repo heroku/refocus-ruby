@@ -1,5 +1,6 @@
 require "refocus/http"
 require "refocus/json_helper"
+require "refocus/samples/collector"
 
 module Refocus
   class Samples
