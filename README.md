@@ -95,7 +95,7 @@ samples_client = refocus.samples
 samples_client.upsert(name: "my-subject.child-subject", aspect: "my-aspect", value: '100')
 
 # Create or update a sample with a custom request body
-request_body =  {name: "my-subject.child-subject", aspect: "my-aspect", value: '100'}
+request_body =  {name: "my-subject.child-subject|my-aspect", value: '100', messageCode: '100%', messageBody: "Great Results!", relatedLinks: [{name:'example_1', url:'https://www.example_1.com'}]}
 samples_client.upsert_custom_body(request_body)
 
 # Describe a sample:
