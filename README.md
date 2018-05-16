@@ -94,7 +94,7 @@ samples_client = refocus.samples
 # Create or update a sample:
 samples_client.upsert(name: "my-subject.child-subject", aspect: "my-aspect", value: '100')
 
-# Upsert with a custom request body
+# Create or update a sample with a custom request body
 request_body =  {name: "my-subject.child-subject", aspect: "my-aspect", value: '100'}
 samples_client.upsert_custom_body(request_body)
 
@@ -104,7 +104,7 @@ samples_client.get(subject: "my-subject", aspect: "my-aspect")
 # List samples:
 samples_client.list(limit: 50)
 
-# Create or update a bulk:
+# Create or update samples in bulk:
 samples_collector = samples_client.collector
 samples_collector.add(name: "my-subject.child-subject", aspect: "my-aspect-1", value: '100')
 samples_collector.add(name: "my-subject.child-subject", aspect: "my-aspect-2", messageCode: '100%')

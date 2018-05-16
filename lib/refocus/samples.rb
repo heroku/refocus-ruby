@@ -5,11 +5,10 @@ module Refocus
   class Samples
     include JsonHelper
 
-    attr_reader :http, :samples
+    attr_reader :http
 
     def initialize(url:, token:)
       @http = Refocus::Http.new(url: url, token: token)
-      @samples = []
     end
 
     def collector
