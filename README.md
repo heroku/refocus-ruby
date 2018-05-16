@@ -83,6 +83,34 @@ refocus.aspects.get(name: "my-aspect")
 refocus.aspects.delete(name: "my-aspect")
 ```
 
+#### Samples
+
+You can manage samples like this:
+
+```ruby
+# Instantiate the samples client
+samples_client = refocus.samples   
+
+# Create or update a sample:
+samples_client.upsert(name: "my-subject.child-subject", aspect: "my-aspect", value: '100')
+
+# Create or update a sample with a custom request body
+request_body =  {name: "my-subject.child-subject|my-aspect", value: '100', messageCode: '100%', messageBody: "Great Results!", relatedLinks: [{name:'example_1', url:'https://www.example_1.com'}]}
+samples_client.upsert_custom_body(request_body)
+
+# Describe a sample:
+samples_client.get(subject: "my-subject", aspect: "my-aspect")
+
+# List samples:
+samples_client.list(limit: 50)
+
+# Create or update samples in bulk:
+samples_collector = samples_client.collector
+samples_collector.add(name: "my-subject.child-subject", aspect: "my-aspect-1", value: '100')
+samples_collector.add(name: "my-subject.child-subject", aspect: "my-aspect-2", messageCode: '100%')
+samples_collector.upsert_bulk
+```
+
 #### Lenses
 
 Lenses are not supported at this time.

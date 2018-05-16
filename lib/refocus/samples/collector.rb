@@ -1,6 +1,9 @@
+require "refocus/json_helper"
+
 module Refocus
   class Samples
     class Collector
+      include JsonHelper
 
       attr_reader :http, :samples
 
@@ -9,19 +12,17 @@ module Refocus
         @samples = []
       end
 
-      def add(name:, aspect:, value:)
-        samples << {name: "#{name}|#{aspect}", value: value.to_s}
+      def add(name:, aspect:, value:"", messageBody:"", messageCode:"", relatedLinks:[])
+        samples << {name: "#{name}|#{aspect}", value: value.to_s, messageBody: messageBody, messageCode: messageCode, relatedLinks: relatedLinks}
       end
 
-      def submit
+      def upsert_bulk
         result = json(http.post("upsert/bulk", body: samples, expects: 200))
         samples.clear
-        true
+        result
       end
+      alias_method :submit, :upsert_bulk
 
-      def json(response)
-        JSON.parse(response.body)
-      end
     end
   end
 end
