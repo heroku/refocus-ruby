@@ -24,7 +24,7 @@ module Refocus
       end
       alias_method :submit, :upsert_bulk
 
-      def format_sample(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
+      def self.format_sample(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
         sample = {name: "#{name}|#{aspect}"}
         sample[:value] = value.to_s if value
         sample[:messageBody] = message_body.to_s if message_body
