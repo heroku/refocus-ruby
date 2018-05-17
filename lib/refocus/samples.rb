@@ -1,5 +1,6 @@
 require "refocus/http"
 require "refocus/json_helper"
+require "refocus/samples/collector"
 
 module Refocus
   class Samples
@@ -15,10 +16,16 @@ module Refocus
       Collector.new(http: http)
     end
 
-    def submit(name:, aspect:, value:)
-      c = collector
-      c.add(name: name, aspect: aspect, value: value)
-      c.submit
+    def upsert(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
+      sample = Collector.format_sample(name:name, aspect: aspect, value: value, message_body: message_body,
+                             message_code: message_code, related_links: related_links)
+      json(http.post("upsert", body: sample, expects: 200))
+    end
+    alias_method :submit, :upsert
+
+    def upsert_custom_body(custom_body)
+      endpoint = (custom_body.is_a? Array) ? "upsert/bulk" : "upsert"
+      json(http.post(endpoint, body: custom_body, expects: 200))
     end
 
     def list(limit: nil)
@@ -30,8 +37,6 @@ module Refocus
     def get(subject:, aspect:)
       json(http.get(URI.escape("#{subject}\|#{aspect}")))
     end
+
   end
 end
-
-require "refocus/samples/collector"
-
