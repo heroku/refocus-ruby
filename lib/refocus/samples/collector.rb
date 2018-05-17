@@ -12,9 +12,9 @@ module Refocus
         @samples = []
       end
 
-      def add(name:, aspect:, value:nil, messageBody:nil, messageCode:nil, relatedLinks:nil)
-        samples << format_sample(name:name, aspect: aspect, value: value, messageBody: messageBody,
-                                 messageCode: messageCode, relatedLinks: relatedLinks)
+      def add(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
+        samples << format_sample(name:name, aspect: aspect, value: value, message_body: message_body,
+                                 message_code: message_code, related_links: related_links)
       end
 
       def upsert_bulk
@@ -24,12 +24,12 @@ module Refocus
       end
       alias_method :submit, :upsert_bulk
 
-      def format_sample(name:, aspect:, value:nil, messageBody:nil, messageCode:nil, relatedLinks:nil)
+      def format_sample(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
         sample = {name: "#{name}|#{aspect}"}
         sample[:value] = value.to_s if value
-        sample[:messageBody] = messageBody.to_s if messageBody
-        sample[:messageCode] = messageCode.to_s if messageCode
-        sample[:relatedLinks] = relatedLinks if relatedLinks
+        sample[:messageBody] = message_body if message_body
+        sample[:messageCode] = message_code if message_code
+        sample[:relatedLinks] = related_links if related_links
         sample
       end
 

@@ -16,8 +16,9 @@ module Refocus
       Collector.new(http: http)
     end
 
-    def upsert(name:, aspect:, value:nil, messageBody:nil, messageCode:nil, relatedLinks:nil)
-      sample = format_sample(name:name, aspect: aspect, value: value, messageBody: messageBody, messageCode: messageCode, relatedLinks: relatedLinks)
+    def upsert(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
+      sample = format_sample(name:name, aspect: aspect, value: value, message_body: message_body,
+                             message_code: message_code, related_links: related_links)
       json(http.post("upsert", body: sample, expects: 200))
     end
     alias_method :submit, :upsert
