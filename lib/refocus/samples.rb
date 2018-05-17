@@ -16,7 +16,7 @@ module Refocus
       Collector.new(http: http)
     end
 
-    def upsert(name:, aspect:, value:"", messageBody:"", messageCode:"", relatedLinks:[])
+    def upsert(name:, aspect:, value:nil, messageBody:nil, messageCode:nil, relatedLinks:nil)
       sample = format_sample(name:name, aspect: aspect, value: value, messageBody: messageBody, messageCode: messageCode, relatedLinks: relatedLinks)
       json(http.post("upsert", body: sample, expects: 200))
     end
@@ -35,11 +35,6 @@ module Refocus
 
     def get(subject:, aspect:)
       json(http.get(URI.escape("#{subject}\|#{aspect}")))
-    end
-
-    private
-    def format_sample(name:, aspect:, value:"", messageBody:"", messageCode:"", relatedLinks:[])
-      {name: "#{name}|#{aspect}", value: value.to_s, messageBody: messageBody, messageCode: messageCode, relatedLinks: relatedLinks}
     end
 
   end
