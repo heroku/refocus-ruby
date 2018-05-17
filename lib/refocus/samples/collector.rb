@@ -13,7 +13,7 @@ module Refocus
       end
 
       def add(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
-        samples << format_sample(name:name, aspect: aspect, value: value, message_body: message_body,
+        samples << self.class.format_sample(name:name, aspect: aspect, value: value, message_body: message_body,
                                  message_code: message_code, related_links: related_links)
       end
 
