@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    refocus (0.1.6)
+    refocus (0.1.7)
       clamp (~> 1.1)
       excon (~> 0.60)
 
@@ -42,4 +42,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
