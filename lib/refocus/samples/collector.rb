@@ -27,8 +27,8 @@ module Refocus
       def format_sample(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
         sample = {name: "#{name}|#{aspect}"}
         sample[:value] = value.to_s if value
-        sample[:messageBody] = message_body if message_body
-        sample[:messageCode] = message_code if message_code
+        sample[:messageBody] = message_body.to_s if message_body
+        sample[:messageCode] = message_code.to_s if message_code
         sample[:relatedLinks] = related_links if related_links
         sample
       end
