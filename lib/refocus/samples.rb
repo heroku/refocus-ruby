@@ -17,7 +17,7 @@ module Refocus
     end
 
     def upsert(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
-      sample = format_sample(name:name, aspect: aspect, value: value, message_body: message_body,
+      sample = Collector.format_sample(name:name, aspect: aspect, value: value, message_body: message_body,
                              message_code: message_code, related_links: related_links)
       json(http.post("upsert", body: sample, expects: 200))
     end
