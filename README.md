@@ -109,6 +109,8 @@ samples_collector = samples_client.collector
 samples_collector.add(name: "my-subject.child-subject", aspect: "my-aspect-1", value: '100')
 samples_collector.add(name: "my-subject.child-subject", aspect: "my-aspect-2", message_code: '100%')
 samples_collector.upsert_bulk
+# Check the status of the previous upsert_bulk call
+upsert_bulk_status = samples_collector.check_status
 ```
 
 #### Lenses

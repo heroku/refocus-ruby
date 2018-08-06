@@ -5,11 +5,12 @@ module Refocus
     class Collector
       include JsonHelper
 
-      attr_reader :http, :samples
+      attr_reader :http, :samples, :job_id
 
       def initialize(http:)
         @http = http
         @samples = []
+        @job_id = nil
       end
 
       def add(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
@@ -19,10 +20,15 @@ module Refocus
 
       def upsert_bulk
         result = json(http.post("upsert/bulk", body: samples, expects: 200))
+        @job_id = result["jobId"]
         samples.clear
         result
       end
       alias_method :submit, :upsert_bulk
+
+      def check_status
+        json(http.get("upsert/bulk/#{job_id}/status"))
+      end
 
       def self.format_sample(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
         sample = {name: "#{name}|#{aspect}"}
