@@ -5,7 +5,7 @@ module Refocus
     class Collector
       include JsonHelper
 
-      attr_reader :http, :samples, :job_id
+      attr_reader :http, :samples
 
       def initialize(http:)
         @http = http
