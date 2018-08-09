@@ -10,7 +10,6 @@ module Refocus
       def initialize(http:)
         @http = http
         @samples = []
-        @job_id = nil
       end
 
       def add(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
@@ -20,14 +19,19 @@ module Refocus
 
       def upsert_bulk
         result = json(http.post("upsert/bulk", body: samples, expects: 200))
-        @job_id = result["jobId"]
         samples.clear
         result
       end
       alias_method :submit, :upsert_bulk
 
-      def check_status
-        json(http.get("upsert/bulk/#{job_id}/status"))
+      def check_status(upsert_bulk_response)
+        job_id = upsert_bulk_response["jobId"]
+        if job_id
+          json(http.get("upsert/bulk/#{job_id}/status"))
+        else
+          warn "The jobId was not found in the previous upsert_bulk_response - #{upsert_bulk_response} - Status cannot be checked."
+          "{}" # return empty json
+        end
       end
 
       def self.format_sample(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
