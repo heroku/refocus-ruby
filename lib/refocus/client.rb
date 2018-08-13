@@ -19,19 +19,19 @@ module Refocus
     end
 
     def subjects
-      Refocus::Subjects.new(url: "#{url}/v1/subjects", token: token)
+      @subjects ||= Refocus::Subjects.new(url: "#{url}/v1/subjects", token: token)
     end
 
     def aspects
-      Refocus::Aspects.new(url: "#{url}/v1/aspects", token: token)
+      @aspects ||= Refocus::Aspects.new(url: "#{url}/v1/aspects", token: token)
     end
 
     def samples
-      Refocus::Samples.new(url: "#{url}/v1/samples", token: token)
+      @samples ||= Refocus::Samples.new(url: "#{url}/v1/samples", token: token)
     end
 
     def perspectives
-      Refocus::Perspectives.new(url: "#{url}/v1/perspectives", token: token)
+      @perspectives ||= Refocus::Perspectives.new(url: "#{url}/v1/perspectives", token: token)
     end
 
   end

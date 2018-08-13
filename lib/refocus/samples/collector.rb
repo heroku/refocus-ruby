@@ -24,6 +24,11 @@ module Refocus
       end
       alias_method :submit, :upsert_bulk
 
+      def check_status(job_id)
+        (raise ArgumentError, "job_id cannot be nil.") unless job_id
+        json(http.get("upsert/bulk/#{job_id}/status"))
+      end
+
       def self.format_sample(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
         sample = {name: "#{name}|#{aspect}"}
         sample[:value] = value.to_s if value
