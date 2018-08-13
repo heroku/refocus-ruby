@@ -109,8 +109,11 @@ samples_collector = samples_client.collector
 samples_collector.add(name: "my-subject.child-subject", aspect: "my-aspect-1", value: '100')
 samples_collector.add(name: "my-subject.child-subject", aspect: "my-aspect-2", message_code: '100%')
 upsert_bulk_response = samples_collector.upsert_bulk
+
 # Check the status of the previous upsert_bulk call
-upsert_bulk_status = samples_collector.check_status(upsert_bulk_response)
+# job_id needs to be parsed from the initial bulk upsert response. e.g.,
+job_id = upsert_bulk_response["jobId"]
+upsert_bulk_status = samples_collector.check_status(job_id)
 ```
 
 #### Lenses

@@ -24,14 +24,9 @@ module Refocus
       end
       alias_method :submit, :upsert_bulk
 
-      def check_status(upsert_bulk_response)
-        job_id = upsert_bulk_response["jobId"]
-        if job_id
-          json(http.get("upsert/bulk/#{job_id}/status"))
-        else
-          warn "The jobId was not found in the previous upsert_bulk_response - #{upsert_bulk_response} - Status cannot be checked."
-          "{}" # return empty json
-        end
+      def check_status(job_id)
+        (raise ArgumentError, "job_id cannot be nil.") unless job_id
+        json(http.get("upsert/bulk/#{job_id}/status"))
       end
 
       def self.format_sample(name:, aspect:, value:nil, message_body:nil, message_code:nil, related_links:nil)
